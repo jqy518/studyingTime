@@ -1,0 +1,11 @@
+<!--pages/run/runlist/components/MapItem.wxml-->
+<map 
+  subkey="{{subkey}}"
+  layer-style="{{style}}"
+  style="width:100%;height:100%"
+  latitude="{{latitude}}"
+  longitude="{{longitude}}"
+  include-points="{{includePoints}}"
+  polyline="{{polyline}}">
+</map>
+

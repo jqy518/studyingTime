@@ -1,0 +1,22 @@
+<!--pages/book.wxml-->
+<view class="book-container">
+  <view class="button-box">
+    <button type="primary" bindtap="getCode">
+      <mp-icon icon="qr-code" color="#ffffff" size="{{20}}"></mp-icon> 扫一扫
+    </button>
+  </view>
+  <view class="container-box">
+    <scroll-view class="flex-scroll-box">
+      <view class="flex-container">
+        <view wx:for="{{booklist}}" class="flex-item book-flex-item" wx:key="_id">
+          <view class="flex-image">
+            <image mode="aspectFit" src="{{item.url}}"></image>
+          </view>
+          <text class="book-title">{{item.title}}</text>
+          <text class="author">{{item.author}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+

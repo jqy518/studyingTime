@@ -1,0 +1,6 @@
+/* pages/run/runreport/index.wxss */
+.images-box {
+  display: flex;
+  justify-content: flex-start;
+  
+}

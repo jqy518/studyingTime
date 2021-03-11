@@ -1,0 +1,32 @@
+<!--pages/run/index.wxml-->
+<view class="run-container">
+  <map 
+  subkey="{{subkey}}"
+  layer-style="{{style}}"
+  style="width:100%;height:100%"
+  latitude="{{location.latitude}}"
+  longitude="{{location.longitude}}"
+  polyline="{{localInfo}}"
+  show-location="{{showPosition}}"
+  scale="{{scale}}"
+	setting="{{setting}}"
+  enable-overlooking="{{overlooking}}">
+    <cover-view class="list-box" bindtap="showMenu">
+      <cover-image src="../../images/list.png" class="cover-icon"></cover-image>
+    </cover-view>
+    <cover-view class="cover-box run-box" bindtap="runFun" wx:if="{{isrun===1}}">
+      <cover-image src="../../images/run-fill.png" class="cover-icon"></cover-image>
+    </cover-view>
+    <cover-view class="cover-box run-stop" bindtap="stopFun" wx:if="{{isrun===2}}">
+      <cover-image src="../../images/stop.png" class="cover-icon"></cover-image>
+    </cover-view>
+    <cover-view class="cover-box run-over" bindtap="overFun" wx:if="{{isrun===3}}">
+      <cover-image src="../../images/over.png" class="cover-icon"></cover-image>
+    </cover-view>
+    <cover-view class="cover-box run-play" bindtap="runFun" wx:if="{{isrun===3}}">
+      <cover-image src="../../images/play.png" class="cover-icon"></cover-image>
+    </cover-view>
+  </map>
+  <mp-actionSheet bindactiontap="actionBtnClick" show="{{showActionsheet}}" actions="{{groups}}" title="菜单">
+</mp-actionSheet>
+</view>

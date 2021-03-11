@@ -1,0 +1,11 @@
+<!--pages/run/runlist/index.wxml-->
+<scroll-view scroll-y="true" class="flex-scroll-box">
+  <view class="flex-container">
+    <view class="flex-item" wx:for="{{listData}}" wx:key="_id">
+      <view class="map-container">
+        <mapitem polyline="{{item.localInfo}}"></mapitem>
+      </view>
+      <text class="date-text">{{item.date}}</text>
+    </view>
+  </view>
+</scroll-view>

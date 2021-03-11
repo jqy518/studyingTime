@@ -1,0 +1,22 @@
+/* pages/book.wxss */
+@import '../../assets/common.wxss';
+
+.book-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+.book-container .button-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  background: #fff;
+}
+.book-container .container-box {
+  flex: 1;
+}
