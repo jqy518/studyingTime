@@ -5,20 +5,13 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => { 
-  console.log(event)
-  const log = cloud.logger()
-  log.info({
-    name:'被触发',
-    type:event.Type || 'timer',
-    time:event.Time || 'yyyyy',
-    triggerName:event.TriggerName || 'xxxx'
-  })
+ 
+  if(event.Type === 'timer') {
+    sendSubscribeMessage()
+  }
   switch (event.action) {
     case 'requestSubscribeMessage': {
       return requestSubscribeMessage(event)
-    }
-    case 'sendSubscribeMessage': {
-      return sendSubscribeMessage(event)
     }
     case 'getWXACode': {
       return getWXACode(event)
@@ -40,25 +33,40 @@ async function requestSubscribeMessage(event) {
 
 async function sendSubscribeMessage(event) {
   const { OPENID } = cloud.getWXContext()
-
-  const templateId = 'hJZlZ_W6XpF3UerYfIWIOYjB4uZz6vNPnXSLdHFpEa0'
-  cloud.openapi.subscribeMessage.send({
-    touser: OPENID,
-    templateId,
-    miniprogram_state: 'developer',
-    page: 'pages/openapi/openapi',
-    // 此处字段应修改为所申请模板所要求的字段
-    data: {
-      time1: {
-        value: '2020-01-01 12:00',
-      },
-      time2: {
-        value: '2020-01-02 00:00',
-      },
-    }
-  }).then((data)=>{
-    return {'code':'200'}
-  })
+  const log = cloud.logger()
+  let db = cloud.database()
+  const _ = db.command
+  let res =  await db.collection('message').where({
+    sendTime:_.eq(true)
+  }).get()
+  let first = res.data[0]
+   if(first) {
+    cloud.openapi.subscribeMessage.send({
+      touser: OPENID,
+      templateId:first.templateId,
+      miniprogram_state: 'developer',
+      page: 'pages/openapi/openapi',
+      // 此处字段应修改为所申请模板所要求的字段
+      data: {
+        time1: {
+          value: '2020-01-01 12:00',
+        },
+        time2: {
+          value: '2020-01-02 00:00',
+        },
+      }
+    }).then((data)=>{
+      db.collection('message').doc(first._id).update({
+        data:{
+          sendTime:false
+        },
+        success:function(res) {
+          console.log('hahaha.....')
+        }
+      })
+      log.info({message:'成功调用！！！'})
+    })
+   }
 }
 
 async function getWXACode(event) {

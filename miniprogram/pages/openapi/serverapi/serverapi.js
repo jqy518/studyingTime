@@ -48,9 +48,20 @@ Page({
       tmplIds: [templateId],
       success: (res) => {
         if (res[templateId] === 'accept') {
-          this.setData({
-            requestSubscribeMessageResult: '成功',
+          const db = wx.cloud.database()
+          db.collection('message').add({
+            data:{
+              templateId:templateId,
+              sendTime:true,
+              name:'提醒'
+            },
+            success:function() {
+              this.setData({
+                requestSubscribeMessageResult: '成功',
+              })
+            }
           })
+          
         } else {
           this.setData({
             requestSubscribeMessageResult: `失败（${res[templateId]}）`,

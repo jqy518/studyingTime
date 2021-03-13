@@ -10,7 +10,7 @@
   </view>
 
   <view class="list">
-    <view class="list-item" bindtap="requestSubscribeMessage">
+    <view class="list-item" bindtap="requestSubscribeMessage"> 
       <text>获取下发权限</text>
     </view>
     <view class="list-item" wx:if="{{requestSubscribeMessageResult}}">
