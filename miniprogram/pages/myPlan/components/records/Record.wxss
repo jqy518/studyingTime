@@ -1,0 +1,45 @@
+/* pages/myPlan/components/records/Record.wxss */
+.record-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top:10rpx;
+}
+.record-container .time {
+  font-size: 30rpx;
+  color:#333;
+  padding:20rpx;
+  position: relative;
+}
+.record-container .time::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  right:0px;
+  top:35rpx;
+  background-color: rgb(4, 103, 253);
+} 
+.record-container .context {
+  flex:1;
+  font-size: 26rpx;
+  color:#666;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding:20rpx;
+}
+.context .image-list {
+  margin-top:20rpx;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.context .image-list image {
+  width: 100rpx;
+  height:100rpx;
+  margin-right:5px;
+}

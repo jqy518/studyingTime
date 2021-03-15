@@ -1,0 +1,6 @@
+<!--pages/myPlan/components/RecordList.wxml-->
+<scroll-view scroll-y="{{true}}" class="record-list-container">
+  <record></record>
+  <record></record>
+  <record></record>
+</scroll-view>

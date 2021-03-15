@@ -2,8 +2,9 @@
 <view class="plan-item-container">
   <mp-slideview buttons="{{slideButtons}}" icon="{{true}}" bindbuttontap="slideButtonTap">
     <view class="weui-slidecell">
-      <view>左滑可以删除（图标Button）</view>
-      <text class="iconfont "></text>
+      <view>网络HTTP学习</view>
+      <view class="iconfont iconxia2 icon-size"></view>
     </view>
   </mp-slideview>
+  <record-list></record-list>
 </view>

@@ -1,0 +1,14 @@
+<!--pages/myPlan/components/records/Record.wxml-->
+<view class="record-container">
+  <text class="time">4-12</text>
+  <view class="dot"></view>
+  <view class="context">
+    <text>首先，造成这个错误很有可能是网络不稳定，连接超时导致的，
+如果再次尝试后依然报错，可以执行下面的命令</text>
+
+  <view class="image-list">
+    <image src="/images/code-db-onAdd.png"></image>
+    <image src="/images/code-func-sum.png"></image>
+  </view>
+</view>
+</view>

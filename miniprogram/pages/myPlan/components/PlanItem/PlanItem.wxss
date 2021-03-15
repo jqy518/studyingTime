@@ -1,9 +1,16 @@
 /* pages/myPlan/components/PlanItem.wxss */
+@import '/assets/fonts/iconfont.wxss';
 .weui-slidecell {
   background-color: #FFFFFF;
   border-radius: 8px;
-  padding: 24px;
+  padding: 20px;
   line-height: 1.4;
   font-size: 17px;
   color: rgba(0,0,0,.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon-size {
+  font-size: 30rpx;
 }

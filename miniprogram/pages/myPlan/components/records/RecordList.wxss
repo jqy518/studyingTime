@@ -1,0 +1,4 @@
+/* pages/myPlan/components/RecordList.wxss */
+.record-list-container {
+  height: 400px;
+}
