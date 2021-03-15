@@ -13,6 +13,9 @@ exports.main = async (event, context) => {
     case 'requestSubscribeMessage': {
       return requestSubscribeMessage(event)
     }
+    case 'sendSubscribeMessage':{
+      return sendSubscribeMessage()
+    }
     case 'getWXACode': {
       return getWXACode(event)
     }

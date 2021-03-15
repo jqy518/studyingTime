@@ -1,4 +1,4 @@
-// pages/deployFunctions/deployFunctions.js
+// pages/myPlan/myPlan.js
 Page({
 
   /**
@@ -6,6 +6,10 @@ Page({
    */
   data: {
 
+  },
+
+  slideButtonTap(e) {
+      console.log('slide button tap', e.detail)
   },
 
   /**

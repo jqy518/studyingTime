@@ -1,0 +1,7 @@
+<view>
+  <view>2019</view>
+  <scroll-view class="plan-main-box">
+    <plan-item></plan-item>
+  </scroll-view>
+</view>
+

@@ -1,28 +1,25 @@
 {
   "pages": [
-    "pages/openapi/openapi",
+    "pages/myPlan/myPlan",
     "pages/book/book",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room",
     "pages/run/index",
     "pages/run/runlist/index",
     "pages/run/runreport/index"
   ],
-  "requiredBackgroundModes": ["location"],
+  "requiredBackgroundModes": [
+    "location"
+  ],
   "tabBar": {
     "list": [
       {
+        "text": "计划",
+        "pagePath": "pages/myPlan/myPlan",
+        "iconPath": "images/no_a.png",
+        "selectedIconPath": "images/no.png"
+      },
+      {
         "text": "书籍",
-        "pagePath": "pages/openapi/openapi",
+        "pagePath": "pages/book/book",
         "iconPath": "images/no_a.png",
         "selectedIconPath": "images/no.png"
       },
@@ -35,12 +32,6 @@
     ],
     "color": "#333",
     "selectedColor": "#00f"
-  },
-  "plugins": {
-    "fgImage":{
-      "version":"1.0.0",
-      "provider":"wxd6a047b13f4bb83f"
-    }
   },
   "useExtendedLib": {
     "weui": true

@@ -1,0 +1,9 @@
+<!--pages/myPlan/components/PlanItem.wxml-->
+<view class="plan-item-container">
+  <mp-slideview buttons="{{slideButtons}}" icon="{{true}}" bindbuttontap="slideButtonTap">
+    <view class="weui-slidecell">
+      <view>左滑可以删除（图标Button）</view>
+      <text class="iconfont "></text>
+    </view>
+  </mp-slideview>
+</view>

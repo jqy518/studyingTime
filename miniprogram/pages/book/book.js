@@ -1,19 +1,14 @@
 // pages/book.js
 Component({
   /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
    * 组件的初始数据
    */
   data: {
-    openid:''
+    openid:'',
+    freshering:false,
+    keyword:'',
+    placeholder:'输入书名或条码查找添加'
   },
-
   /**
    * 组件的方法列表
    */
@@ -32,6 +27,15 @@ Component({
     }
   },
   methods: {
+    async fresherHandler(){
+     await this.queryBookList()
+      this.setData({
+        freshering:false
+      })
+    },
+    bindscrolltolower() {
+      console.log('xxxxxx----------')
+    },
     async queryBookList(){
       let db = wx.cloud.database()
       let result = await db.collection('books').where({_openid:this.data.openid}).get()
@@ -41,33 +45,46 @@ Component({
         })
       }
     },
-    async getCode(){
+    setValue(event) {
+      console.log(event.detail.value)
+      this.setData({
+        keyword:event.detail.value
+      })
+    },
+    async doSearch() {
+      if(this.data.keyword) {
+        this.queryFromDouban(this.data.keyword)
+      }
+    },
+   async getCode(){
       let code  = await getApp().wxp.scanCode({scanType:'pdf417'})
-
       console.log(code,code.result)
       if(code && code.result) {
-        let data = await wx.cloud.callFunction({
-          name:'doubanbook',
-          data:{
-            code:code.result
-          }
-        })
-        if(data.result) {
-          if(data.result && data.result.title){
-            let db = wx.cloud.database()
-            let addresult = await db.collection('books').add({
-              data:{
-                ...data.result
-              }
-            })
-            if(addresult._id){
-              this.queryBookList()
+        this.queryFromDouban(code.result)
+      }
+    },
+    async queryFromDouban(keyword) {
+      let data = await wx.cloud.callFunction({
+        name:'doubanbook',
+        data:{
+          code:keyword
+        }
+      })
+      if(data.result) {
+        if(data.result && data.result.title){
+          let db = wx.cloud.database()
+          let addresult = await db.collection('books').add({
+            data:{
+              ...data.result
             }
-          }else {
-            wx.showToast({
-              title: '未查到相关书籍',
-            })
+          })
+          if(addresult._id){
+            this.queryBookList()
           }
+        }else {
+          wx.showToast({
+            title: '未查到相关书籍',
+          })
         }
       }
     }

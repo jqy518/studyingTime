@@ -1,12 +1,15 @@
 <!--pages/book.wxml-->
 <view class="book-container">
   <view class="button-box">
-    <button type="primary" bindtap="getCode">
+    <mp-icon icon="qr-code" color="#333" size="{{30}}" bindtap="getCode"></mp-icon>
+    <input type="text" value="{{keyword}}" placeholder="{{placeholder}}" bindinput="setValue" bindconfirm="setValue"  class="input-box"/>
+    <mp-icon icon="search" color="#333" size="{{30}}"  bindtap="doSearch"></mp-icon>
+    <!-- <button type="primary" bindtap="getCode">
       <mp-icon icon="qr-code" color="#ffffff" size="{{20}}"></mp-icon> 扫一扫
-    </button>
+    </button> -->
   </view>
   <view class="container-box">
-    <scroll-view class="flex-scroll-box">
+    <scroll-view class="flex-scroll-box" refresher-triggered="{{freshering}}" scroll-y="{{true}}" refresher-enabled="{{true}}" bindrefresherrefresh="fresherHandler">
       <view class="flex-container">
         <view wx:for="{{booklist}}" class="flex-item book-flex-item" wx:key="_id">
           <view class="flex-image">
