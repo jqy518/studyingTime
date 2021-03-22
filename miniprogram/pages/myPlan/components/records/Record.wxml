@@ -7,8 +7,8 @@
 如果再次尝试后依然报错，可以执行下面的命令</text>
 
   <view class="image-list">
-    <image src="/images/code-db-onAdd.png"></image>
-    <image src="/images/code-func-sum.png"></image>
-  </view>
+    <image src="/images/code-db-onAdd.png" bindtap="showPreView" data-src="/images/code-db-onAdd.png"></image>
+    <image src="/images/code-func-sum.png" bindtap="showPreView" data-src="/images/code-db-onAdd.png"></image>
+  </view> 
 </view>
 </view>

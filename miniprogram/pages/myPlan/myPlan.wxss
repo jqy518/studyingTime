@@ -5,3 +5,16 @@
   box-sizing: border-box;
   padding: 20rpx;
 }
+.add-plan {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -50rpx;
+}

@@ -54,3 +54,14 @@
   color:#333;
   padding:5px;
 }
+.weui-textarea {
+  width: 100%;
+}
+.weui-textarea-counter {
+  font-size: 20rpx;
+  text-align: right;
+  color:#666;
+}
+.whsb-body {
+  padding-bottom: 5px;
+}

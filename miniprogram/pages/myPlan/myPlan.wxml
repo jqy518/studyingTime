@@ -1,7 +1,11 @@
 <view>
   <view>2019</view>
   <scroll-view class="plan-main-box">
-    <plan-item></plan-item>
+    <plan-item wx:for="{{planList}}" plan-item="{{item}}" wx:key="_id"></plan-item>
   </scroll-view>
+  <view class="add-plan" bindtap="addPlan">
+    <mp-icon icon="add" color="#fff" size="{{40}}"></mp-icon>
+  </view>
+  <add-form show="{{show}}" bindsubmited="queryList"></add-form>
 </view>
 

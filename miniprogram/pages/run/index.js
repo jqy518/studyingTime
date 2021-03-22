@@ -73,7 +73,6 @@ Page({
     
     //获取openId
     let loginInfo = await wx.cloud.callFunction({name:'login'})
-    console.log()
     this.setData({
       location:{
         latitude:locationData.latitude,

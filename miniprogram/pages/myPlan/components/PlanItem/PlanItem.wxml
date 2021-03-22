@@ -1,10 +1,12 @@
 <!--pages/myPlan/components/PlanItem.wxml-->
 <view class="plan-item-container">
-  <mp-slideview buttons="{{slideButtons}}" icon="{{true}}" bindbuttontap="slideButtonTap">
-    <view class="weui-slidecell">
-      <view>网络HTTP学习</view>
-      <view class="iconfont iconxia2 icon-size"></view>
+  <mp-slideview buttons="{{slideButtons}}" icon="{{true}}"  bindbuttontap="slideButtonTap">
+    <view class="weui-slidecell" bindtap="openAndHiddlen">
+      <view>{{planItem.title}}</view>
+      <view class="iconfont iconxia2 icon-size {{isopen ? 'arrow-up':''}}"></view>
     </view>
   </mp-slideview>
-  <record-list></record-list>
+  <view hidden="{{!isopen}}">
+    <record-list></record-list>
+  </view>
 </view>

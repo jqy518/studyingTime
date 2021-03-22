@@ -5,18 +5,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    show:false,
+    openid:'',
+    planList:[]
   },
 
-  slideButtonTap(e) {
-      console.log('slide button tap', e.detail)
+  addPlan: function () {
+      this.setData({
+          show: true
+      })
   },
-
+  async queryList() {
+    this.setData({show: false})
+    let db = wx.cloud.database()
+    let listRes = await db.collection('planlist').where({
+        _openid:this.data.openid
+    }).get()
+    this.setData({
+        planList:listRes.data || []
+    })
+  },
+  async initData(){
+    //获取openId
+    let loginInfo = await wx.cloud.callFunction({name:'login'})
+    this.setData({
+        openid:loginInfo.result.openid
+    },function(){
+        this.queryList()
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+     this.initData()
   },
 
   /**
