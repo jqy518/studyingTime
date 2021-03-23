@@ -1,0 +1,24 @@
+<!--pages/myPlan/components/addForm/addForm.wxml-->
+<mp-half-screen-dialog 
+  bindbuttontap="buttontap"
+  show="{{show}}"
+  maskClosable="{{false}}" 
+  title="学习进度打卡" 
+  subTitle="记录下你学习的内容吧~">
+  <view slot="desc" class="whsb-body">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells>
+        <mp-cell>
+          <mp-uploader ext-class="uploader-ext-class" bindfail="uploadError" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="3" title="图片上传"></mp-uploader>
+        </mp-cell>
+      </mp-cells>
+      <mp-cells title="学习描述">
+        <mp-cell ext-class="">
+          <textarea maxlength="200" class="weui-textarea" bindinput="formInputChange" data-field="desc" placeholder="请输入描述" style="height: 3.3em" />
+          <view class="weui-textarea-counter">{{formData.desc.length}}/200</view>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+    <button type="primary" bindtap="submitFun" loading="{{issubmit}}" style="margin-top:10px;">提交</button>
+  </view>
+</mp-half-screen-dialog>

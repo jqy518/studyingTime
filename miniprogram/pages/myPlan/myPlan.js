@@ -6,6 +6,7 @@ Page({
    */
   data: {
     show:false,
+    rshow:false,
     openid:'',
     planList:[]
   },

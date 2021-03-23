@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "mp-slideview": "weui-miniprogram/slideview/slideview",
-    "record-list": "../records/RecordList"
+    "record-list": "../records/RecordList",
+    "record-form":"../recordForm/addForm"
   }
 }

@@ -9,4 +9,5 @@
   <view hidden="{{!isopen}}">
     <record-list></record-list>
   </view>
+  <record-form show="{{rshow}}" bindsubmited="queryChildren"></record-form>
 </view>

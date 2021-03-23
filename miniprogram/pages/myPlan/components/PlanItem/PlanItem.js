@@ -14,6 +14,7 @@ Component({
    */
   data: {
     isopen:false,
+    rshow:false,
     children:[],
     arrowAnimationData:{},
     slideButtons: [{
@@ -33,8 +34,24 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    addRecord:function() {
+      this.setData({
+          rshow: true
+      })
+    },
     slideButtonTap(event){
-      console.log(event)
+     let index = event.detail.index;
+     switch(index) {
+       case 0:
+         this.addRecord()
+         break;
+       case 1:
+         console.log('ring...')
+         break;
+       case 2:
+         console.log('delete...')
+         break;
+     }
     },
     openAndHiddlen(event) {
       this.setData({
