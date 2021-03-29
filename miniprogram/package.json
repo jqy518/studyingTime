@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "miniprogram-api-promise": "^1.0.4",
+    "miniprogram-computed": "^4.0.3",
     "moment": "^2.29.1"
   }
 }

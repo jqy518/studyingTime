@@ -7,7 +7,7 @@
     </view>
   </mp-slideview>
   <view hidden="{{!isopen}}">
-    <record-list></record-list>
+    <record-list children="{{children}}"></record-list>
   </view>
-  <record-form show="{{rshow}}" bindsubmited="queryChildren"></record-form>
+  <record-form show="{{rshow}}" bindsubmited="queryChildren" pid="{{planItem._id}}"></record-form>
 </view>

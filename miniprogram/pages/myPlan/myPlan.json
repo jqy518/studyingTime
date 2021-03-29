@@ -2,6 +2,9 @@
   "usingComponents": {
     "plan-item":"./components/PlanItem/PlanItem",
     "mp-icon": "weui-miniprogram/icon/icon",
-    "add-form":"./components/addForm/addForm"
-  }
+    "add-form":"./components/addForm/addForm",
+    "mp-loading": "weui-miniprogram/loading/loading"
+  },
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle": "dark"
 }

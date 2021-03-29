@@ -16,5 +16,23 @@
   position: fixed;
   bottom: 10px;
   left: 50%;
+  z-index: 999;
   margin-left: -50rpx;
+}
+.loading-style {
+  height: 60px;
+}
+.year-box {
+  position: fixed;
+  z-index: 999;
+  width: 60px;
+  background: #fff;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+  left: 0;
+  top: 0px;
+  border-radius: 0 10px 10px 0px;
+
 }

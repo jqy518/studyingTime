@@ -1,6 +1,9 @@
 <!--pages/myPlan/components/RecordList.wxml-->
 <scroll-view scroll-y="{{true}}" class="record-list-container">
-  <record></record>
-  <record></record>
-  <record></record>
+  <view wx:if="{{children && children.length > 0}}">
+    <record wx:for="{{children}}" info="{{item}}" wx:key="_id"></record>
+  </view>
+  <view wx:else class="noinfo">
+    暂无学习记录哦~
+  </view>
 </scroll-view>

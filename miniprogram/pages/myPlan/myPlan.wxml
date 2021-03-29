@@ -1,8 +1,6 @@
 <view>
-  <view>2019</view>
-  <scroll-view class="plan-main-box">
-    <plan-item wx:for="{{planList}}" plan-item="{{item}}" wx:key="_id"></plan-item>
-  </scroll-view>
+  <view class="year-box" bindtap="testQuery">{{currYear}}</view>
+  <plan-item wx:for="{{planList}}" plan-item="{{item}}" offset-top="{{scrollTop}}" bind:getyear="setYear" wx:key="_id"></plan-item>
   <view class="add-plan" bindtap="addPlan">
     <mp-icon icon="add" color="#fff" size="{{40}}"></mp-icon>
   </view>

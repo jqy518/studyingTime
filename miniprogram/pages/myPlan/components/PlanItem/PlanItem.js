@@ -6,6 +6,9 @@ Component({
   properties: {
     planItem:{
       type:Object
+    },
+    offsetTop:{
+      type:Number
     }
   },
 
@@ -16,7 +19,6 @@ Component({
     isopen:false,
     rshow:false,
     children:[],
-    arrowAnimationData:{},
     slideButtons: [{
       text: '打卡',
       src:'/images/打卡.svg'
@@ -29,11 +31,25 @@ Component({
       src:'/images/del.svg'
     }],
   },
-
+  observers:{
+    'offsetTop':function(nval) {
+      this.calculateOffset()
+    }
+  },
   /**
    * 组件的方法列表
    */
   methods: {
+    calculateOffset() {
+      let query = this.createSelectorQuery()
+      query.select('.weui-slidecell').boundingClientRect((res)=>{
+        let topOffset = res.top;
+        if(-40<topOffset&&topOffset<35){
+          console.log(this.properties.planItem.year)
+          this.triggerEvent('getyear',this.properties.planItem.year)
+        }
+      }).exec()
+    },
     addRecord:function() {
       this.setData({
           rshow: true
@@ -62,8 +78,17 @@ Component({
         }
       })
     },
-    queryChildren() {
-      console.log('xxxxxxxxxxxxxxx----')
+    async queryChildren() {
+      let pid = this.properties.planItem._id;
+      if(pid) {
+        let db = wx.cloud.database();
+        let cres = await db.collection('recordlist').where({
+          pid:pid
+        }).get()
+        this.setData({
+          children:cres.data || []
+        })
+      }
     }
   }
 })
