@@ -14,7 +14,7 @@ Page({
     pageSize:20,
     pageNo:1,
     scrollTop:0,
-    currYear:1999,
+    currYear:'----',
     planList:[]
   },
   testQuery:async function() {
@@ -62,6 +62,11 @@ Page({
 
 
     let appendData = listRes.list || []
+    if(refresh && appendData.length > 0) {
+      this.setData({
+        currYear:appendData[0].year
+      })
+    }
     this.setData({
         planList:refresh ? appendData : [...this.data.planList,...appendData],
         loading:false

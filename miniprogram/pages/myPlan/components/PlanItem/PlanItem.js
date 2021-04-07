@@ -1,4 +1,5 @@
 // pages/myPlan/components/PlanItem.js
+import gradientColor from '../color'
 Component({ 
   /**
    * 组件的属性列表
@@ -36,6 +37,19 @@ Component({
       this.calculateOffset()
     }
   },
+  lifetimes:{
+    ready() {
+      console.log(this.data.bgimage)
+    }
+  },
+  computed:{
+    bgimage:function() {
+      console.log('xxxxxxxxxx')
+      let gradient =  new gradientColor('#D24D07','#74A043',10)
+      let mcolor = gradient[0]
+      return `linear-gradient(-45deg, ${mcolor}, ${mcolor} 25%, #BFEFFF 25%, #BFEFFF 50%, ${mcolor} 50%, ${mcolor} 75%, #BFEFFF 75%, #BFEFFF)`
+    }
+  },
   /**
    * 组件的方法列表
    */
@@ -45,7 +59,6 @@ Component({
       query.select('.weui-slidecell').boundingClientRect((res)=>{
         let topOffset = res.top;
         if(-40<topOffset&&topOffset<35){
-          console.log(this.properties.planItem.year)
           this.triggerEvent('getyear',this.properties.planItem.year)
         }
       }).exec()

@@ -6,13 +6,44 @@
 .weui-slidecell {
   background-color: #FFFFFF;
   border-radius: 8px;
-  padding: 20px;
+  padding:10px;
   line-height: 1.4;
   font-size: 17px;
   color: rgba(0,0,0,.9);
   display: flex;
+  position: relative;
+  overflow: hidden;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.progress {
+  opacity: .5;
+  position: absolute;
+  /*  border:1px solid;*/
+  height: 5px;
+  width: 30%;
+  left:0px;
+  top:0px;
+  background: #BFEFFF;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.progress {
+  background-size: 30px 30px;
+  background-image: linear-gradient(-45deg, #63B8FF, #63B8FF 25%, #BFEFFF 25%, #BFEFFF 50%, #63B8FF 50%, #63B8FF 75%, #BFEFFF 75%, #BFEFFF);
+
+}
+
+@keyframes animate {
+  from {
+      background-position: 0 0;
+  }
+  to {
+      background-position: 60px 30px;
+  }
 }
 .icon-size {
   font-size: 30rpx;
@@ -20,4 +51,23 @@
 }
 .arrow-up {
   transform: rotate(180deg);
+}
+.right-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.right-box .day-box {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color:#666;
+  text-align: center;
+  background-color: rgb(227, 241, 253);
+  overflow: hidden;
+  font-size: 14px;
+  margin-right: 20rpx;
+}
+.right-box .day-box .unit {
+  font-size: 12px;
 }
