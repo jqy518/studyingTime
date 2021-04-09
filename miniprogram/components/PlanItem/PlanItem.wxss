@@ -23,10 +23,10 @@
   position: absolute;
   /*  border:1px solid;*/
   height: 5px;
-  width: 30%;
   left:0px;
   top:0px;
-  background: #BFEFFF;
+
+  background: #fc8b87;
   border-radius: 5px;
   z-index: 0;
 }
@@ -34,7 +34,6 @@
 .progress {
   background-size: 30px 30px;
   background-image: linear-gradient(-45deg, #63B8FF, #63B8FF 25%, #BFEFFF 25%, #BFEFFF 50%, #63B8FF 50%, #63B8FF 75%, #BFEFFF 75%, #BFEFFF);
-
 }
 
 @keyframes animate {
@@ -61,6 +60,7 @@
   width: 40px;
   height: 40px;
   line-height: 40px;
+  border-radius: 50%;
   color:#666;
   text-align: center;
   background-color: rgb(227, 241, 253);

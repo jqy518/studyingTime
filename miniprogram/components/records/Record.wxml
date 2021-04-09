@@ -6,7 +6,7 @@
     <text>{{itemData.desc}}</text>
 
   <view class="image-list">
-    <image wx:for="{{itemData.files}}" src="{{item}}" bindtap="showPreView" data-src="{{item}}"></image>
+    <image wx:for="{{itemData.files}}" src="{{item}}" bindtap="showPreView" wx:key="item" data-src="{{item}}"></image>
   </view> 
 </view>
 </view>

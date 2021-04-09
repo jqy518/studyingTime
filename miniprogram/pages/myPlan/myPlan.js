@@ -8,7 +8,7 @@ Page({
   data: {
     show:false,
     rshow:false,
-    loading:false,
+    loading:true,
     freshering:false,
     openid:'',
     pageSize:20,
@@ -62,15 +62,29 @@ Page({
 
 
     let appendData = listRes.list || []
-    if(refresh && appendData.length > 0) {
-      this.setData({
-        currYear:appendData[0].year
-      })
+    if(refresh) {
+      if(appendData.length > 0) {
+        this.setData({
+          currYear:appendData[0].year,
+          planList:[...appendData],
+          loading:false
+        })
+      }else {
+        this.setData({
+          currYear:'----',
+          planList:[],
+          loading:false
+        })
+      }
+    }else {
+      if(appendData.length) {
+
+        this.setData({
+            planList:[...this.data.planList,...appendData],
+            loading:false
+        })
+      }
     }
-    this.setData({
-        planList:refresh ? appendData : [...this.data.planList,...appendData],
-        loading:false
-    })
     wx.stopPullDownRefresh()
   },
   async initData(){

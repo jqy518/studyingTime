@@ -50,12 +50,45 @@ Component({
       let res = await db.collection('recordlist').add({
         data:sData
       })
+      await this.updatePlanOverDay()
       this.setData({
         issubmit:false
       })
       if(res._id) {
         this.triggerEvent('submited')
       }
+    },
+    async updatePlanOverDay() {
+      let db = wx.cloud.database()
+      const $ = db.command.aggregate
+      let maxItem = await db.collection('recordlist')
+              .aggregate()
+              .match({
+                pid:this.properties.pid
+              }).sort({
+                createTime:1
+              }).limit(1).end()
+      console.log(maxItem)
+     if(!maxItem.list || maxItem.list.length == 0) {
+      return await this.doUpdateDay()
+     }else {
+       let maxDateTime = maxItem.list[0].createTime
+       let b = moment().isAfter(maxDateTime,'day')
+       if(b) {
+         return await this.doUpdateDay()
+       }
+     }
+      
+    },
+    async doUpdateDay() {
+      let db = wx.cloud.database()
+      const _ = db.command
+     let result =  await db.collection('planlist').doc(this.properties.pid).update({
+        data:{
+          over:_.inc(1)
+        }
+      })
+      return result
     },
     submitFun() {
       this.selectComponent('#form').validate((valid,errors)=>{

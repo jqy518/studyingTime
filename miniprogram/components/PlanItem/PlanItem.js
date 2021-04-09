@@ -1,6 +1,8 @@
 // pages/myPlan/components/PlanItem.js
 import gradientColor from '../color'
+const computedBehavior = require('miniprogram-computed')
 Component({ 
+  
   /**
    * 组件的属性列表
    */
@@ -14,18 +16,21 @@ Component({
   },
 
   /**
-   * 组件的初始数据
+   * 这是一坑：computedBehavior.behavior，文档上没写明确，可能是miniprogram-computed版本太高的原因
    */
+  behaviors: [computedBehavior.behavior],
   data: {
     isopen:false,
     rshow:false,
     children:[],
+    step:0,
+    bgimage:'',
     slideButtons: [{
       text: '打卡',
-      src:'/images/打卡.svg'
+      src:'/images/dak.svg'
     },{
       text: '提醒',
-      src:'/images/提醒.svg'
+      src:'/images/tix.svg'
     },{
       type: 'warn',
       text: '删除',
@@ -39,21 +44,28 @@ Component({
   },
   lifetimes:{
     ready() {
-      console.log(this.data.bgimage)
+      this.calculateStep(this.properties.planItem)
     }
   },
-  computed:{
-    bgimage:function() {
-      console.log('xxxxxxxxxx')
-      let gradient =  new gradientColor('#D24D07','#74A043',10)
-      let mcolor = gradient[0]
-      return `linear-gradient(-45deg, ${mcolor}, ${mcolor} 25%, #BFEFFF 25%, #BFEFFF 50%, ${mcolor} 50%, ${mcolor} 75%, #BFEFFF 75%, #BFEFFF)`
-    }
-  },
+
   /**
    * 组件的方法列表
    */
   methods: {
+    calculateStep(planItem) {
+      if(planItem) {
+        let step = Math.floor(planItem.over * 10 /planItem.days);
+        let gradient =  new gradientColor('#D24D07','#74A043',10)
+        let bgs =  new gradientColor('#fc8b87','#d1fca0',10)
+        let mcolor = gradient[step]
+        let bg = bgs[step]
+        let bgimage =  `linear-gradient(-45deg, ${mcolor}, ${mcolor} 25%, ${bg} 25%, ${bg} 50%, ${mcolor} 50%, ${mcolor} 75%, ${bg} 75%, ${bg})`
+        this.setData({
+          step:step,
+          bgimage:bgimage
+        })
+      }
+    },
     calculateOffset() {
       let query = this.createSelectorQuery()
       query.select('.weui-slidecell').boundingClientRect((res)=>{
@@ -99,6 +111,7 @@ Component({
           pid:pid
         }).get()
         this.setData({
+          rshow:false,
           children:cres.data || []
         })
       }

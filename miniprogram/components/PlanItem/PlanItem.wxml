@@ -9,7 +9,7 @@
       </view>
        <view class="iconfont iconxia2 icon-size {{isopen ? 'arrow-up':''}}"></view>
       </view>
-      <view class="progress"></view>
+      <view class="progress" style="background-image:{{bgimage}};width:{{step*10+'%'}}"></view>
     </view>
   </mp-slideview>
   <view hidden="{{!isopen}}">
