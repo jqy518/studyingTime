@@ -16,4 +16,7 @@
     <record-list children="{{children}}"></record-list>
   </view>
   <record-form show="{{rshow}}" bindsubmited="queryChildren" pid="{{planItem._id}}"></record-form>
+  <mp-dialog title="提示" show="{{dialogShow}}" bindbuttontap="delDo" buttons="{{buttons}}">
+      <view>确定删除吗？</view>
+  </mp-dialog>
 </view>

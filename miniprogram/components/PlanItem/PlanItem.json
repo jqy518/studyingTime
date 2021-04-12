@@ -3,6 +3,7 @@
   "usingComponents": {
     "mp-slideview": "weui-miniprogram/slideview/slideview",
     "record-list": "../records/RecordList",
-    "record-form":"../recordForm/addForm"
+    "record-form":"../recordForm/addForm",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }

@@ -22,6 +22,8 @@ Component({
   data: {
     isopen:false,
     rshow:false,
+    dialogShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
     children:[],
     step:0,
     bgimage:'',
@@ -90,9 +92,43 @@ Component({
          console.log('ring...')
          break;
        case 2:
-         console.log('delete...')
+         this.delRecord()
          break;
      }
+    },
+    delRecord(){
+      this.setData({
+        dialogShow:true
+      })
+    },
+    delDo(e){
+     let index = e.detail.index;
+     if(index == 1) {
+       this.delAjax()
+     }
+     this.setData({
+      dialogShow:false
+     })
+    },
+    async delAjax() {
+      let pid = this.properties.planItem._id
+      let res = await wx.cloud.callFunction({
+        name:'plancontroler',
+        data:{
+          method:'delPlanById',
+          params:{
+            id:pid
+          }
+        }
+      })
+      if(res.status === 200) {
+        this.triggerEvent('update')
+      }else {
+        wx.showToast({
+          title: 'title',
+        })
+      }
+      
     },
     openAndHiddlen(event) {
       this.setData({
