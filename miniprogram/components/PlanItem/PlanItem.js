@@ -1,6 +1,7 @@
 // pages/myPlan/components/PlanItem.js
 import gradientColor from '../color'
 const computedBehavior = require('miniprogram-computed')
+const app = getApp()
 Component({ 
   
   /**
@@ -89,12 +90,51 @@ Component({
          this.addRecord()
          break;
        case 1:
-         console.log('ring...')
+         //this.ringPlan()
+         this.sendMessage()
          break;
        case 2:
          this.delRecord()
          break;
      }
+    },
+    async sendMessage() {
+     let res =  await wx.cloud.callFunction({
+        name:'message',
+        data:{
+          method:'sendSubscribeMessage'
+        }
+      })
+      console.log(res)
+    },
+    async ringPlan(){
+      let mid = this.properties.planItem._id;
+      console.log(app.wxp)
+      let res = await app.wxp.requestSubscribeMessage({
+        tmplIds:['vyg4YXhVLLTm2mQOGg0vpIaHXyZa3yO1y1m6B8qHYvY'],
+      })
+      if(res['vyg4YXhVLLTm2mQOGg0vpIaHXyZa3yO1y1m6B8qHYvY'] === 'accept') {
+        let cres = await wx.cloud.callFunction({
+          name:'message',
+          data:{
+            method:'requestSubscribeMessage',
+            params:{
+              tid:'vyg4YXhVLLTm2mQOGg0vpIaHXyZa3yO1y1m6B8qHYvY',
+              bindid:mid,
+              sendDate:this.properties.planItem.startTime,
+              thing1:this.properties.planItem.title,
+              thing4:this.properties.planItem.desc,
+              time6:this.properties.planItem.startTime
+            }
+          }
+        })
+        if(cres.result._id){
+          wx.showToast({
+            title:'订阅成功',
+            icon:none
+          })
+        }
+      }
     },
     delRecord(){
       this.setData({
@@ -121,6 +161,7 @@ Component({
           }
         }
       })
+      res = res.result || {}
       if(res.status === 200) {
         this.triggerEvent('update')
       }else {

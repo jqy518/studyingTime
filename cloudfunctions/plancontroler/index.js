@@ -21,8 +21,16 @@ async function delRecordsByPid(pid) {
   }).remove()
   return resc
 }
+//订阅消息
+async function requestSubscribeMessage(){
+
+}
+
 // 云函数入口函数
 exports.main = async (event, context) => {
+  if(event.Type === 'timer') {
+    return sendSubscribeMessage()
+  }
   let {method,params}  = event;
   switch(method) {
     case 'delPlanById' : 

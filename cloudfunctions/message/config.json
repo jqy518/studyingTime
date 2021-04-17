@@ -3,6 +3,7 @@
     "openapi": [
       "subscribeMessage.send",
       "subscribeMessage.addTemplate",
+      "subscribeMessage.getPubTemplateKeyWordsById",
       "templateMessage.send",
       "templateMessage.addTemplate",
       "templateMessage.deleteTemplate",
@@ -10,12 +11,5 @@
       "templateMessage.getTemplateLibraryById",
       "templateMessage.getTemplateLibraryList"
     ]
-  },
-  "triggers":[
-    {
-      "name": "sendMessage",
-      "type": "timer",
-      "config": "*/5 * * * * * *"
-    }
-  ]
+  }
 }

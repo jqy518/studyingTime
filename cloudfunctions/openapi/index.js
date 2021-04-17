@@ -34,7 +34,7 @@ async function requestSubscribeMessage(event) {
   return 'hJZlZ_W6XpF3UerYfIWIOYjB4uZz6vNPnXSLdHFpEa0' // 如 'N_J6F05_bjhqd6zh2h1LHJ9TAv9IpkCiAJEpSw0PrmQ'
 }
 
-async function sendSubscribeMessage(event) {
+async function sendSubscribeMessage() {
   const { OPENID } = cloud.getWXContext()
   const log = cloud.logger()
   let db = cloud.database()
