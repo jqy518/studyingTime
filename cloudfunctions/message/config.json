@@ -11,5 +11,12 @@
       "templateMessage.getTemplateLibraryById",
       "templateMessage.getTemplateLibraryList"
     ]
-  }
+  },
+  "triggers":[
+    {
+      "name": "sendMessage",
+      "type": "timer",
+      "config": "0 0 8,18 * * * *"
+    }
+  ]
 }

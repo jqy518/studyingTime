@@ -90,8 +90,8 @@ Component({
          this.addRecord()
          break;
        case 1:
-         //this.ringPlan()
-         this.sendMessage()
+         this.ringPlan()
+         //this.sendMessage()
          break;
        case 2:
          this.delRecord()
@@ -109,7 +109,6 @@ Component({
     },
     async ringPlan(){
       let mid = this.properties.planItem._id;
-      console.log(app.wxp)
       let res = await app.wxp.requestSubscribeMessage({
         tmplIds:['vyg4YXhVLLTm2mQOGg0vpIaHXyZa3yO1y1m6B8qHYvY'],
       })
@@ -121,7 +120,9 @@ Component({
             params:{
               tid:'vyg4YXhVLLTm2mQOGg0vpIaHXyZa3yO1y1m6B8qHYvY',
               bindid:mid,
-              sendDate:this.properties.planItem.startTime,
+              _openid:this.properties.planItem._openid,
+              page:'pages/myPlan/myPlan',
+              sendTime:new Date(this.properties.planItem.startTime).getTime(),
               thing1:this.properties.planItem.title,
               thing4:this.properties.planItem.desc,
               time6:this.properties.planItem.startTime
@@ -131,7 +132,7 @@ Component({
         if(cres.result._id){
           wx.showToast({
             title:'订阅成功',
-            icon:none
+            icon:"none"
           })
         }
       }

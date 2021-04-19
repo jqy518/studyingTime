@@ -15,7 +15,6 @@ async function requestSubscribeMessage(params){
 }
 //发送消息
 async function sendSubscribeMessage() {
-  const log = cloud.logger()
   let db = cloud.database()
   const _ = db.command
   let res =  await db.collection('message').where({
@@ -25,41 +24,69 @@ async function sendSubscribeMessage() {
   let list = res.data || []
   if(list.length > 0) {
     let sendTasks = list.map((item)=>{
-      return new Promise((resolve,reject)=>{
-        let _tid = item.tid
-        cloud.openapi.subscribeMessage.getPubTemplateKeyWordsById({tid:_tid}).then((tres)=>{
-          let keyDatas = tres.data || []
-          sendData = keyDatas.reduce((obj,kitem)=>{
-            obj[kitem.rule] = {
-              value:item[kitem.rule]
-            }
-            return obj
-          },{})
+        return new Promise((resolve,reject)=>{
+          let _tid = item.tid
           cloud.openapi.subscribeMessage.send({
             touser: item._openid,
             templateId:_tid,
-            page: res.page,
-            data:sendData
+            page: item.page,
+            data:{
+              thing1:{
+                value:item.thing1
+              },
+              thing4:{
+                value:item.thing4
+              },
+              time6:{
+                value:item.time6
+              }
+            }
           }).then((sres)=>{
-            resolve(sres)
+            resolve({
+              _id:item._id,
+              ...sres
+            })
+          }).catch((err)=>{
+            resolve({
+              _id:item._id,
+              ...err
+            })
           })
-        })
       })
     })
     let sendResults = await Promise.all(sendTasks)
     return sendResults
+  }else {
+    return null
   }
 }
 //更新message
-async function updateMessage() {
-  db.collection('message').doc(first._id).update({
-    data:{
-      sendTime:false
-    },
-    success:function(res) {
-      console.log('hahaha.....')
-    }
+async function updateMessage(sendRess) {
+  let db = cloud.database()
+  let tasks = sendRess.map((item)=>{
+    return new Promise((resolve,reject)=>{
+      if(item.errCode){
+        resolve(item)
+      }else {
+        db.collection('message').doc(item._id).update({
+          data:{
+            flag:false
+          }
+        }).then((res)=>{
+          resolve({
+            _id:item._id,
+            ...res
+          })
+        }).catch((res)=>{
+          resolve({
+            _id:item._id,
+            ...res
+          })
+        })
+      }
+    })
   })
+  return Promise.all(tasks)
 }
 
 // 云函数入口函数
@@ -74,6 +101,11 @@ exports.main = async (event, context) => {
      return await requestSubscribeMessage(params)
     }
     case 'sendSubscribeMessage' : 
-    return await sendSubscribeMessage()
+    let sendRess = await sendSubscribeMessage()
+    console.log(sendRess)
+    let updateRes = await updateMessage(sendRess)
+    console.log(updateRes)
+    return updateRes
+
   }
 }

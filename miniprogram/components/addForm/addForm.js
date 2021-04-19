@@ -62,6 +62,7 @@ Component({
           let end = moment(sData.endTime)
           sData.days = end.diff(start,'days')
           sData.over = 0;
+          sData.createTime = new Date().getTime()
           if(sData.days <= 0) {
             wx.showToast({
               icon:'error',
