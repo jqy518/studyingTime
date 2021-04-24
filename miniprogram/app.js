@@ -22,5 +22,6 @@ App({
       subkey:'TACBZ-RY5KP-TWVDN-LC6GA-D735Z-3SFEW',//地图KEY
     }
     this.wxp = wxp;
-  }
+  },
+  towxml:require('/towxml/index')
 })

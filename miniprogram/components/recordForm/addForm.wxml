@@ -14,8 +14,8 @@
       </mp-cells>
       <mp-cells title="学习描述">
         <mp-cell ext-class="">
-          <textarea maxlength="200" class="weui-textarea" bindinput="formInputChange" data-field="desc" placeholder="请输入描述" style="height: 3.3em" />
-          <view class="weui-textarea-counter">{{formData.desc.length}}/200</view>
+          <textarea maxlength="20000" class="weui-textarea" bindinput="formInputChange" data-field="desc" placeholder="请输入描述" style="height: 3.3em" />
+          <view class="weui-textarea-counter">{{formData.desc.length}}/20000</view>
         </mp-cell>
       </mp-cells>
     </mp-form>

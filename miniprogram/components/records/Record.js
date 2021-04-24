@@ -1,5 +1,6 @@
 // pages/myPlan/components/records/Record.js
 import moment from 'moment'
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -20,18 +21,25 @@ Component({
       this.adapteData(this.properties.info)
     }
   },
-  watch:{
-    'itemData.**':function(nval) {
-      this.adapteData(nval)
-    }
-  },
   /**
    * 组件的方法列表
    */
   methods: {
+    showDetail() {
+      this.triggerEvent('showd',this.data.itemData.article,{ bubbles: true, composed: true })
+    },
     adapteData(nobj) {
       let currObj = Object.assign({},nobj)
       currObj.createTime = moment(currObj.createTime).format('MM-DD')
+      currObj.article = app.towxml(currObj.desc,'markdown',{
+        //base:'https://xxx.com',				// 相对资源的base路径
+        theme:'light',					// 主题，默认`light`
+        events:{					// 为元素绑定的事件方法
+          tap:(e)=>{
+            console.log('tap',e);
+          }
+        }
+      });
       this.setData({
         itemData:currObj
       })

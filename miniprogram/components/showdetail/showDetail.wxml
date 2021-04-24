@@ -1,0 +1,10 @@
+<!--components/showDetail.wxml-->
+<mp-half-screen-dialog 
+  show="{{show}}"
+  extClass="my-screen-dialog"
+  maskClosable="{{false}}" 
+  title="学习详情">
+  <view slot="desc" class="whsb-body">
+    <towxml nodes="{{article}}"/>
+  </view>
+</mp-half-screen-dialog>

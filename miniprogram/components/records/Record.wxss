@@ -30,6 +30,10 @@
   border-radius: 10rpx;
   padding:20rpx;
 }
+.record-container .context .alink {
+  text-align: right;
+  color:rgb(4, 103, 253);
+}
 .context .image-list {
   margin-top:20rpx;
   width: 100%;

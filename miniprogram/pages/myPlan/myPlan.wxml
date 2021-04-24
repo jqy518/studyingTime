@@ -1,10 +1,11 @@
 <view>
   <view class="year-box" bindtap="testQuery">{{currYear}}</view>
-  <plan-item wx:for="{{planList}}" plan-item="{{item}}" offset-top="{{scrollTop}}" bind:getyear="setYear" bind:update="onPullDownRefresh" wx:key="_id"></plan-item>
+  <plan-item wx:for="{{planList}}" plan-item="{{item}}" offset-top="{{scrollTop}}" bind:getyear="setYear" bind:update="onPullDownRefresh" bind:showd="showDetail" wx:key="_id"></plan-item>
   <view wx:if="{{planList.length == 0 && !loading}}" class="nodata">还没有计划，点下面按钮添加吧~</view>
   <view class="add-plan" bindtap="addPlan">
     <mp-icon icon="add" color="#fff" size="{{40}}"></mp-icon>
   </view>
   <add-form show="{{show}}" bindsubmited="queryList"></add-form>
+  <show-detail show="{{dshow}}" article="{{darticle}}"></show-detail>
 </view>
 

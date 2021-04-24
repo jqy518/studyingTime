@@ -7,6 +7,8 @@ Page({
    */
   data: {
     show:false,
+    dshow:false,
+    darticle:null,
     rshow:false,
     loading:true,
     freshering:false,
@@ -31,6 +33,15 @@ Page({
     this.setData({
       currYear:e.detail
     })
+  },
+  showDetail(event) {
+    if(event.detail) {
+      console.log(event.detail)
+      this.setData({
+          dshow: true,
+          darticle:event.detail
+      })
+    }
   },
   addPlan: function () {
       this.setData({

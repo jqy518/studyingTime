@@ -3,6 +3,7 @@
     "plan-item":"/components/PlanItem/PlanItem",
     "mp-icon": "weui-miniprogram/icon/icon",
     "add-form":"/components/addForm/addForm",
+    "show-detail":"/components/showdetail/showDetail",
     "mp-loading": "weui-miniprogram/loading/loading"
   },
   "enablePullDownRefresh":true,

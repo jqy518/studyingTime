@@ -1,0 +1,13 @@
+/* components/showDetail.wxss */
+.whsb-body .h2w__main {
+  margin: 0;
+  padding: 0;
+}
+.my-screen-dialog {
+  max-height: 95% !important;
+  overflow: hidden;
+}
+.whsb-body {
+  height: 460px;
+  overflow-y:auto;
+}
