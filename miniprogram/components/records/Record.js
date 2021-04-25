@@ -14,7 +14,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    itemData:{}
+    itemData:{},
+    dialogShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
   },
   lifetimes:{
     ready() {
@@ -25,6 +27,33 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    delRecord(){
+      this.setData({
+        dialogShow:true
+      })
+    },
+    delDo(e){
+     let index = e.detail.index;
+     if(index == 1) {
+       this.delAjax()
+     }
+     this.setData({
+      dialogShow:false
+     })
+    },
+    async delAjax() {
+      let pid = this.properties.info._id
+      let db = wx.cloud.database()
+      let res = await db.collection('recordlist').doc(pid).remove()
+      if(res.stats.removed === 1) {
+        this.triggerEvent('updatercord',null,{ bubbles: true, composed: true })
+      }else {
+        wx.showToast({
+          title: 'title',
+        })
+      }  
+    },
+
     showDetail() {
       this.triggerEvent('showd',this.data.itemData.article,{ bubbles: true, composed: true })
     },

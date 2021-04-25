@@ -169,8 +169,7 @@ Component({
         wx.showToast({
           title: 'title',
         })
-      }
-      
+      }  
     },
     openAndHiddlen(event) {
       this.setData({

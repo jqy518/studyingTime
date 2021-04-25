@@ -5,9 +5,18 @@
   <view class="context">
     <view class="image-list">
       <image wx:for="{{itemData.files}}" src="{{item}}" bindtap="showPreView" wx:key="item" data-src="{{item}}"></image>
-    </view> 
-    <view class="alink" bindtap="showDetail">
-      查看详情
     </view>
+    <view class="floor-box">
+      <view class="alink" bindtap="showDetail">
+        查看详情
+      </view>
+      <view class="alink" bindtap="delRecord">
+        删除
+      </view>
+    </view>
+
+    <mp-dialog title="提示" show="{{dialogShow}}" bindbuttontap="delDo" buttons="{{buttons}}">
+      <view>确定删除吗？</view>
+    </mp-dialog>
 </view>
 </view>

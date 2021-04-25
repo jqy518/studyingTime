@@ -31,7 +31,7 @@
   padding:20rpx;
 }
 .record-container .context .alink {
-  text-align: right;
+  margin-left: 10px;
   color:rgb(4, 103, 253);
 }
 .context .image-list {
@@ -46,4 +46,9 @@
   width: 100rpx;
   height:100rpx;
   margin-right:5px;
+}
+.floor-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

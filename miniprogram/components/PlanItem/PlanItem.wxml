@@ -13,7 +13,7 @@
     </view>
   </mp-slideview>
   <view hidden="{{!isopen}}">
-    <record-list children="{{children}}"></record-list>
+    <record-list children="{{children}}" bindupdatercord="queryChildren"></record-list>
   </view>
   <record-form show="{{rshow}}" bindsubmited="queryChildren" pid="{{planItem._id}}"></record-form>
   <mp-dialog title="提示" show="{{dialogShow}}" bindbuttontap="delDo" buttons="{{buttons}}">
