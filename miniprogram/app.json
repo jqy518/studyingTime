@@ -22,12 +22,6 @@
         "pagePath": "pages/book/book",
         "iconPath": "images/no_a.png",
         "selectedIconPath": "images/no.png"
-      },
-      {
-        "text": "运动",
-        "pagePath": "pages/run/index",
-        "iconPath": "images/run_a.png",
-        "selectedIconPath": "images/run.png"
       }
     ],
     "color": "#333",

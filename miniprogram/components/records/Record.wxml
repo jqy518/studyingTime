@@ -4,6 +4,7 @@
   <view class="dot"></view>
   <view class="context">
     <view class="image-list">
+      <view>{{itemData.title}}</view>
       <image wx:for="{{itemData.files}}" src="{{item}}" bindtap="showPreView" wx:key="item" data-src="{{item}}"></image>
     </view>
     <view class="floor-box">

@@ -28,6 +28,7 @@ Component({
     issubmit:false,
     formData:{
       pid:'',
+      title:'',
       files:[],
       desc:'',
       createTime:''
